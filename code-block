@@ -1,0 +1,15 @@
+function purgeGmail() {
+  var search = "label:exceptions";
+  
+  do {
+    var threads = GmailApp.search(search, 0, 500);
+    
+    for (var i=0; i<threads.length; i++) {
+      var thread = threads[i];
+      thread.moveToTrash();
+    }
+    
+    threads = GmailApp.search(search, 0, 500);
+  }
+  while (threads.length > 0);
+}
